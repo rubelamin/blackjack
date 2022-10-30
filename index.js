@@ -46,15 +46,19 @@ function renderGame() {
     message = "Do you want to draw a card?";
   } else if (sum === 21) {
     message = "Woohoo, you got the blackjack";
+    hasBlackJack = true;
   } else {
     message = "You lost the game";
+    isAlive = false;
   }
   messageEl.textContent = message;
 }
 
 function newCard() {
-  let thirdCard = getRandomCard();
-  sum += thirdCard;
-  cards.push(thirdCard);
-  renderGame();
+  if (hasBlackJack === false && isAlive === true) {
+    let thirdCard = getRandomCard();
+    sum += thirdCard;
+    cards.push(thirdCard);
+    renderGame();
+  }
 }
